@@ -1,0 +1,29 @@
+GET http://127.0.0.1:8000/api/v1/dogs/
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzQ5NTE2NjIwLCJpYXQiOjE3NDk1MTYzMjAsImp0aSI6IjRmODMyMTViOTg4YzRjYzFiYzJhODQxMWU4OTkyZDM5IiwidXNlcl9pZCI6MX0.sTMjQ-mShdJMk8cO5BKIcutG1Pwga9jLzKNqA0JUwG0
+Content-Type: application/json
+
+###
+
+POST http://127.0.0.1:8000/api/v1/dogs/
+Content-Type: application/json
+
+ {
+    "name": "Teste 2",
+    "age": 1,
+    "gender": "Male",
+    "description": "Teste 2",
+    "price": "1000.00",
+    "breed": 2
+  }
+
+
+###
+
+
+POST http://127.0.0.1:8000/api/token/
+Content-Type: application/json
+
+{
+  "username": "admin",
+  "password": "admin"
+}
