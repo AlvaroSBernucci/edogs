@@ -21,7 +21,7 @@ function HomePage() {
       <Grid>
         <Typography>Cachorros a venda</Typography>
         <Grid container spacing={2}>
-          {dogs && dogs.map((dog) => <DogCard dog={dog} />)}
+          {dogs && dogs.map((dog, index) => <DogCard key={index} dog={dog} />)}
         </Grid>
       </Grid>
     </Grid>

@@ -1,17 +1,36 @@
 import { Link } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faDog } from "@fortawesome/free-solid-svg-icons";
+import { faHeart, faUser } from "@fortawesome/free-solid-svg-icons";
+import { AppBar, Toolbar, Typography, Button, Box } from "@mui/material";
+import {
+  styledBrand,
+  styledBtnLogin,
+  styledHeader,
+  styledIcon,
+} from "./HeaderStyled";
 
 function Header() {
   return (
-    <div>
-      <nav className="text-2xl">
-        <Link to="/">
-          <FontAwesomeIcon icon={faDog} />
-          <span className="text-blue-900">Edogs</span>
-        </Link>
-      </nav>
-    </div>
+    <Box sx={{ flexGrow: 1 }}>
+      <AppBar position="static" sx={styledHeader}>
+        <Toolbar>
+          <Box sx={{ flexGrow: 1 }}>
+            <Link to="/">
+              <FontAwesomeIcon icon={faHeart} style={styledIcon} />
+              <Typography component="span" sx={styledBrand}>
+                Pet Love
+              </Typography>
+            </Link>
+          </Box>
+          <Button
+            startIcon={<FontAwesomeIcon icon={faUser} />}
+            sx={styledBtnLogin}
+          >
+            Entrar
+          </Button>
+        </Toolbar>
+      </AppBar>
+    </Box>
   );
 }
 
