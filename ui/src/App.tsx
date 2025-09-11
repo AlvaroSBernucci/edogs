@@ -1,6 +1,6 @@
 import HomePage from "./pages/HomePage/HomePage";
 import LoginPage from "./pages/LoginPage/LoginPage";
-import DogDetailPage from "./pages/DogDetailPage/DogDetailPage";
+import PetDetailPage from "./pages/PetDetailPage/PetDetailPage";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import "./index.css";
 import Header from "./components/Header/Header";
@@ -10,8 +10,8 @@ import { UserStorage } from "./context/UserContext/UserContext";
 function App() {
   return (
     <BrowserRouter>
-      <Header />
       <UserStorage>
+        <Header />
         <Routes>
           <Route path="/" element={<LoginPage />} />
           <Route path="/login" element={<LoginPage />} />
@@ -23,7 +23,7 @@ function App() {
               </PrivateRoute>
             }
           />
-          <Route path="/dog-detail/:id" element={<DogDetailPage />} />
+          <Route path="/pet-detail/:id" element={<PetDetailPage />} />
         </Routes>
       </UserStorage>
     </BrowserRouter>

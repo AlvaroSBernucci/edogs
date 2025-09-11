@@ -19,4 +19,5 @@ export interface UserContextInterface {
   userLogin: (values: LoginValuesInterface) => Promise<void>;
   userData?: UserDataInterface;
   login: boolean;
+  userLogout: () => void;
 }

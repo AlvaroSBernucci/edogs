@@ -1,6 +1,6 @@
 import { createContext, useEffect } from "react";
 import { useState } from "react";
-import { Navigate, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { api } from "../../utils/axios";
 import type {
   UserContextInterface,
@@ -8,11 +8,13 @@ import type {
 } from "./UserContext.types";
 import { toast } from "react-toastify";
 import { getToken } from "../../utils/auth";
+import { clearToken } from "../../utils/auth";
 
 const userContextInitialValues = {
   userLogin: async () => {},
   userData: undefined,
   login: false,
+  userLogout: () => {},
 };
 
 export const UserContext = createContext<UserContextInterface>(
@@ -35,6 +37,7 @@ export const UserStorage = ({ children }: ChildrenInterface) => {
       setLogin(true);
     } catch (err) {
       console.error(err);
+      setLogin(false);
     } finally {
       setLoading(false);
     }
@@ -43,7 +46,6 @@ export const UserStorage = ({ children }: ChildrenInterface) => {
   const userLogin = async (values: object) => {
     try {
       const response = await api.post("/api/token/", values);
-      console.log("Token recebido:", response.data);
       localStorage.setItem("token", response.data.access);
       toast.success("Login realizado com sucesso!");
       await fetchUserData();
@@ -54,6 +56,11 @@ export const UserStorage = ({ children }: ChildrenInterface) => {
     }
   };
 
+  const userLogout = () => {
+    setLogin(false);
+    clearToken();
+  };
+
   useEffect(() => {
     const token = getToken();
     if (token) {
@@ -62,7 +69,7 @@ export const UserStorage = ({ children }: ChildrenInterface) => {
   }, []);
 
   return (
-    <UserContext.Provider value={{ userLogin, userData, login }}>
+    <UserContext.Provider value={{ userLogin, userData, login, userLogout }}>
       {children}
     </UserContext.Provider>
   );

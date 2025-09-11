@@ -4,5 +4,5 @@ from .views import UserMeView
 app_name = "accounts"
 
 urlpatterns = [
-  path('accounts/me/', UserMeView.as_view(), name='accounts-me'),
+  path('me/', UserMeView.as_view(), name='accounts-me'),
 ]

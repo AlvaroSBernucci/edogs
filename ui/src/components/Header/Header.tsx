@@ -8,8 +8,12 @@ import {
   styledHeader,
   styledIcon,
 } from "./HeaderStyled";
+import { useContext } from "react";
+import { UserContext } from "../../context/UserContext/UserContext";
 
 function Header() {
+  const { login, userLogout } = useContext(UserContext);
+
   return (
     <Box sx={{ flexGrow: 1 }}>
       <AppBar position="static" sx={styledHeader}>
@@ -22,12 +26,22 @@ function Header() {
               </Typography>
             </Link>
           </Box>
-          <Button
-            startIcon={<FontAwesomeIcon icon={faUser} />}
-            sx={styledBtnLogin}
-          >
-            Entrar
-          </Button>
+          {login ? (
+            <Button
+              startIcon={<FontAwesomeIcon icon={faUser} />}
+              sx={styledBtnLogin}
+              onClick={userLogout}
+            >
+              Sair
+            </Button>
+          ) : (
+            <Button
+              startIcon={<FontAwesomeIcon icon={faUser} />}
+              sx={styledBtnLogin}
+            >
+              Entrar
+            </Button>
+          )}
         </Toolbar>
       </AppBar>
     </Box>
