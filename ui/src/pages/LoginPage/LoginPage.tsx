@@ -1,11 +1,11 @@
 import "react-toastify/dist/ReactToastify.css";
 import * as Yup from "yup";
-import { api } from "../../utils/axios";
 import { Button, Grid, TextField, Typography } from "@mui/material";
 import { Formik, Field } from "formik";
-import { toast, ToastContainer } from "react-toastify";
+import { ToastContainer } from "react-toastify";
 import { StyledForm } from "./LoginPage.styled";
-import { useNavigate } from "react-router-dom";
+import { useContext } from "react";
+import { UserContext } from "../../context/UserContext/UserContext";
 
 const initialValues = {
   username: "",
@@ -18,24 +18,20 @@ const validationSchema = Yup.object({
 });
 
 export default function LoginPage() {
-  const navigate = useNavigate();
-
-  const handleSubmit = async (values: object) => {
-    try {
-      const response = await api.post("/api/token/", values);
-      console.log("Token recebido:", response.data);
-      localStorage.setItem("token", response.data.access);
-      toast.success("Login realizado com sucesso!");
-      navigate("/home");
-    } catch (error) {
-      console.error(error);
-      toast.error("Usuário ou senha inválidos");
-    }
-  };
+  const { userLogin } = useContext(UserContext);
 
   return (
-    <Grid container justifyContent="center" alignItems="center" style={{ minHeight: "100vh" }}>
-      <Formik initialValues={initialValues} validationSchema={validationSchema} onSubmit={handleSubmit}>
+    <Grid
+      container
+      justifyContent="center"
+      alignItems="center"
+      style={{ minHeight: "100vh" }}
+    >
+      <Formik
+        initialValues={initialValues}
+        validationSchema={validationSchema}
+        onSubmit={userLogin}
+      >
         {({ errors, touched }) => (
           <StyledForm>
             <Typography component="p">Tela de Login</Typography>

@@ -1,5 +1,9 @@
 import axios from "axios";
-import type { AxiosError, AxiosRequestConfig, AxiosRequestHeaders } from "axios";
+import type {
+  AxiosError,
+  AxiosRequestConfig,
+  AxiosRequestHeaders,
+} from "axios";
 
 import { getToken, clearToken } from "./auth";
 

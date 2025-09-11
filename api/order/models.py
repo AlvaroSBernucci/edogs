@@ -1,7 +1,6 @@
 from django.db import models
-from django.conf import settings
 from address.models import Address
-from dogs.models import Dog
+from pets.models import Pet
 from account.models import Account
 
 class Order(models.Model):
@@ -25,6 +24,6 @@ class Order(models.Model):
 
 class OrderItem(models.Model):
     order = models.ForeignKey(Order,on_delete=models.PROTECT,related_name="items")
-    dog  = models.ForeignKey(Dog,on_delete=models.PROTECT)
+    pet  = models.ForeignKey(Pet,on_delete=models.PROTECT)
     price_at_purchase = models.DecimalField("Preço da compra", max_digits=9,decimal_places=2)
     quantity = models.PositiveIntegerField("Quantidade", default=1)
