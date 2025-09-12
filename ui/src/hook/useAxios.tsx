@@ -20,7 +20,6 @@ function useAxios<T>(url: string, options?: AxiosRequestConfig) {
       try {
         const response = await api.get<T>(url, { ...options, signal });
         setData(response.data);
-        console.log(response.data);
       } catch (err: unknown) {
         if (err instanceof AxiosError) {
           if (err.code === "ERR_CANCELED") {

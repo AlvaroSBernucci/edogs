@@ -1,9 +1,3 @@
-import type { ReactNode } from "react";
-
-export interface ChildrenInterface {
-  children: ReactNode;
-}
-
 interface LoginValuesInterface {
   username: string;
   password: string;

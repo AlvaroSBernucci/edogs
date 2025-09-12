@@ -1,11 +1,8 @@
-import { createContext, useEffect } from "react";
+import React, { createContext, useEffect } from "react";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { api } from "../../utils/axios";
-import type {
-  UserContextInterface,
-  ChildrenInterface,
-} from "./UserContext.types";
+import type { UserContextInterface } from "./UserContext.types";
 import { toast } from "react-toastify";
 import { getToken } from "../../utils/auth";
 import { clearToken } from "../../utils/auth";
@@ -21,7 +18,7 @@ export const UserContext = createContext<UserContextInterface>(
   userContextInitialValues
 );
 
-export const UserStorage = ({ children }: ChildrenInterface) => {
+export const UserStorage = ({ children }: React.PropsWithChildren) => {
   const [userData, setUserData] = useState();
   const [loading, setLoading] = useState(false);
   const [login, setLogin] = useState(false);
